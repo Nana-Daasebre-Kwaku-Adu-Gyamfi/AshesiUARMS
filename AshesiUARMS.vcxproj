@@ -118,11 +118,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="adminDashboard.cpp" />
     <ClCompile Include="Dashboard.cpp" />
+    <ClCompile Include="facultyDashboard.cpp" />
     <ClCompile Include="LoginForm.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Dashboard.h">
+    <ClInclude Include="adminDashboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="facultyDashboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="studentDashboard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
@@ -130,8 +138,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dashboard.resx">
-      <DependentUpon>Dashboard.h</DependentUpon>
+    <EmbeddedResource Include="adminDashboard.resx">
+      <DependentUpon>adminDashboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="facultyDashboard.resx">
+      <DependentUpon>facultyDashboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="studentDashboard.resx">
+      <DependentUpon>studentDashboard.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
