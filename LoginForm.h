@@ -74,6 +74,10 @@ namespace AshesiUARMS {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginForm::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
 			this->panel5 = (gcnew System::Windows::Forms::Panel());
@@ -86,10 +90,6 @@ namespace AshesiUARMS {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->selectRoleToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->adminToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -122,6 +122,56 @@ namespace AshesiUARMS {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(431, 652);
 			this->panel1->TabIndex = 0;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(51, 352);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(43, 21);
+			this->label6->TabIndex = 10;
+			this->label6->Text = L"Role";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->ForeColor = System::Drawing::Color::Gray;
+			this->label5->Location = System::Drawing::Point(92, 607);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(301, 19);
+			this->label5->TabIndex = 9;
+			this->label5->Text = L"Developed by: Daasebre, Logan, Mariana";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(106, 131);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(325, 21);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"Academic Record Management System";
+			this->label4->Click += gcnew System::EventHandler(this, &LoginForm::label4_Click);
+			// 
+			// linkLabel1
+			// 
+			this->linkLabel1->AutoSize = true;
+			this->linkLabel1->DisabledLinkColor = System::Drawing::Color::Black;
+			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->linkLabel1->LinkBehavior = System::Windows::Forms::LinkBehavior::NeverUnderline;
+			this->linkLabel1->LinkColor = System::Drawing::Color::Black;
+			this->linkLabel1->Location = System::Drawing::Point(146, 508);
+			this->linkLabel1->Name = L"linkLabel1";
+			this->linkLabel1->Size = System::Drawing::Size(146, 19);
+			this->linkLabel1->TabIndex = 7;
+			this->linkLabel1->TabStop = true;
+			this->linkLabel1->Text = L"Forgot my password";
 			// 
 			// button1
 			// 
@@ -246,62 +296,12 @@ namespace AshesiUARMS {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(170, 21);
+			this->pictureBox1->Location = System::Drawing::Point(160, 22);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(96, 96);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
-			// 
-			// linkLabel1
-			// 
-			this->linkLabel1->AutoSize = true;
-			this->linkLabel1->DisabledLinkColor = System::Drawing::Color::Black;
-			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->linkLabel1->LinkBehavior = System::Windows::Forms::LinkBehavior::NeverUnderline;
-			this->linkLabel1->LinkColor = System::Drawing::Color::Black;
-			this->linkLabel1->Location = System::Drawing::Point(146, 508);
-			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(146, 19);
-			this->linkLabel1->TabIndex = 7;
-			this->linkLabel1->TabStop = true;
-			this->linkLabel1->Text = L"Forgot my password";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(51, 125);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(325, 21);
-			this->label4->TabIndex = 8;
-			this->label4->Text = L"Academic Record Management System";
-			this->label4->Click += gcnew System::EventHandler(this, &LoginForm::label4_Click);
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label5->ForeColor = System::Drawing::Color::Gray;
-			this->label5->Location = System::Drawing::Point(69, 605);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(301, 19);
-			this->label5->TabIndex = 9;
-			this->label5->Text = L"Developed by: Daasebre, Logan, Mariana";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(51, 352);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(43, 21);
-			this->label6->TabIndex = 10;
-			this->label6->Text = L"Role";
 			// 
 			// menuStrip1
 			// 
@@ -328,19 +328,19 @@ namespace AshesiUARMS {
 			// adminToolStripMenuItem
 			// 
 			this->adminToolStripMenuItem->Name = L"adminToolStripMenuItem";
-			this->adminToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->adminToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->adminToolStripMenuItem->Text = L"Admin";
 			// 
 			// facultyToolStripMenuItem
 			// 
 			this->facultyToolStripMenuItem->Name = L"facultyToolStripMenuItem";
-			this->facultyToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->facultyToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->facultyToolStripMenuItem->Text = L"Faculty";
 			// 
 			// studentToolStripMenuItem
 			// 
 			this->studentToolStripMenuItem->Name = L"studentToolStripMenuItem";
-			this->studentToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->studentToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->studentToolStripMenuItem->Text = L"Student";
 			// 
 			// LoginForm
@@ -351,7 +351,7 @@ namespace AshesiUARMS {
 			this->Controls->Add(this->panel1);
 			this->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"LoginForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"LoginForm";

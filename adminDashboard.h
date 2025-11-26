@@ -42,7 +42,8 @@ namespace AshesiUARMS {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ logoTitle1;
-	private: System::Windows::Forms::Button^ btnDashboard;
+	private: System::Windows::Forms::Button^ btnStudent;
+
 
 
 
@@ -50,10 +51,13 @@ namespace AshesiUARMS {
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Button^ btnSettings;
 	private: System::Windows::Forms::Button^ btnAddDepartment;
+	private: System::Windows::Forms::Button^ btnAdmin;
+	private: System::Windows::Forms::Button^ btnFaculty;
 
-	private: System::Windows::Forms::Button^ btnRegisterStudent;
 
-	private: System::Windows::Forms::Button^ btnRegisterFcaulty;
+
+
+
 
 
 
@@ -81,12 +85,13 @@ namespace AshesiUARMS {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(adminDashboard::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->btnAddCourse = (gcnew System::Windows::Forms::Button());
 			this->btnInfo = (gcnew System::Windows::Forms::Button());
 			this->btnSettings = (gcnew System::Windows::Forms::Button());
 			this->btnAddDepartment = (gcnew System::Windows::Forms::Button());
-			this->btnRegisterStudent = (gcnew System::Windows::Forms::Button());
-			this->btnRegisterFcaulty = (gcnew System::Windows::Forms::Button());
-			this->btnDashboard = (gcnew System::Windows::Forms::Button());
+			this->btnAdmin = (gcnew System::Windows::Forms::Button());
+			this->btnFaculty = (gcnew System::Windows::Forms::Button());
+			this->btnStudent = (gcnew System::Windows::Forms::Button());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
@@ -94,7 +99,6 @@ namespace AshesiUARMS {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->logoTitle1 = (gcnew System::Windows::Forms::Label());
 			this->Logo = (gcnew System::Windows::Forms::PictureBox());
-			this->btnAddCourse = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Logo))->BeginInit();
@@ -107,9 +111,9 @@ namespace AshesiUARMS {
 			this->panel1->Controls->Add(this->btnInfo);
 			this->panel1->Controls->Add(this->btnSettings);
 			this->panel1->Controls->Add(this->btnAddDepartment);
-			this->panel1->Controls->Add(this->btnRegisterStudent);
-			this->panel1->Controls->Add(this->btnRegisterFcaulty);
-			this->panel1->Controls->Add(this->btnDashboard);
+			this->panel1->Controls->Add(this->btnAdmin);
+			this->panel1->Controls->Add(this->btnFaculty);
+			this->panel1->Controls->Add(this->btnStudent);
 			this->panel1->Controls->Add(this->panel4);
 			this->panel1->Controls->Add(this->panel3);
 			this->panel1->Controls->Add(this->panel2);
@@ -118,6 +122,23 @@ namespace AshesiUARMS {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(231, 700);
 			this->panel1->TabIndex = 0;
+			// 
+			// btnAddCourse
+			// 
+			this->btnAddCourse->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btnAddCourse->FlatAppearance->BorderSize = 0;
+			this->btnAddCourse->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnAddCourse->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnAddCourse->ForeColor = System::Drawing::Color::White;
+			this->btnAddCourse->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->btnAddCourse->Location = System::Drawing::Point(15, 295);
+			this->btnAddCourse->Name = L"btnAddCourse";
+			this->btnAddCourse->Size = System::Drawing::Size(201, 49);
+			this->btnAddCourse->TabIndex = 9;
+			this->btnAddCourse->Text = L"Add Course";
+			this->btnAddCourse->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->btnAddCourse->UseVisualStyleBackColor = true;
 			// 
 			// btnInfo
 			// 
@@ -173,61 +194,61 @@ namespace AshesiUARMS {
 			this->btnAddDepartment->UseVisualStyleBackColor = true;
 			this->btnAddDepartment->Click += gcnew System::EventHandler(this, &adminDashboard::button4_Click);
 			// 
-			// btnRegisterStudent
+			// btnAdmin
 			// 
-			this->btnRegisterStudent->Dock = System::Windows::Forms::DockStyle::Top;
-			this->btnRegisterStudent->FlatAppearance->BorderSize = 0;
-			this->btnRegisterStudent->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnRegisterStudent->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnAdmin->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btnAdmin->FlatAppearance->BorderSize = 0;
+			this->btnAdmin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnAdmin->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnRegisterStudent->ForeColor = System::Drawing::Color::White;
-			this->btnRegisterStudent->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->btnRegisterStudent->Location = System::Drawing::Point(15, 197);
-			this->btnRegisterStudent->Name = L"btnRegisterStudent";
-			this->btnRegisterStudent->Size = System::Drawing::Size(201, 49);
-			this->btnRegisterStudent->TabIndex = 5;
-			this->btnRegisterStudent->Text = L"Register Student";
-			this->btnRegisterStudent->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-			this->btnRegisterStudent->UseVisualStyleBackColor = true;
-			this->btnRegisterStudent->Click += gcnew System::EventHandler(this, &adminDashboard::button3_Click);
+			this->btnAdmin->ForeColor = System::Drawing::Color::White;
+			this->btnAdmin->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->btnAdmin->Location = System::Drawing::Point(15, 197);
+			this->btnAdmin->Name = L"btnAdmin";
+			this->btnAdmin->Size = System::Drawing::Size(201, 49);
+			this->btnAdmin->TabIndex = 5;
+			this->btnAdmin->Text = L"Admin";
+			this->btnAdmin->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->btnAdmin->UseVisualStyleBackColor = true;
+			this->btnAdmin->Click += gcnew System::EventHandler(this, &adminDashboard::button3_Click);
 			// 
-			// btnRegisterFcaulty
+			// btnFaculty
 			// 
-			this->btnRegisterFcaulty->Dock = System::Windows::Forms::DockStyle::Top;
-			this->btnRegisterFcaulty->FlatAppearance->BorderSize = 0;
-			this->btnRegisterFcaulty->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnRegisterFcaulty->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnFaculty->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btnFaculty->FlatAppearance->BorderSize = 0;
+			this->btnFaculty->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnFaculty->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnRegisterFcaulty->ForeColor = System::Drawing::Color::White;
-			this->btnRegisterFcaulty->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->btnRegisterFcaulty->Location = System::Drawing::Point(15, 148);
-			this->btnRegisterFcaulty->Name = L"btnRegisterFcaulty";
-			this->btnRegisterFcaulty->Size = System::Drawing::Size(201, 49);
-			this->btnRegisterFcaulty->TabIndex = 4;
-			this->btnRegisterFcaulty->Text = L"Register Faculty";
-			this->btnRegisterFcaulty->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-			this->btnRegisterFcaulty->UseVisualStyleBackColor = true;
-			this->btnRegisterFcaulty->Click += gcnew System::EventHandler(this, &adminDashboard::button2_Click);
+			this->btnFaculty->ForeColor = System::Drawing::Color::White;
+			this->btnFaculty->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->btnFaculty->Location = System::Drawing::Point(15, 148);
+			this->btnFaculty->Name = L"btnFaculty";
+			this->btnFaculty->Size = System::Drawing::Size(201, 49);
+			this->btnFaculty->TabIndex = 4;
+			this->btnFaculty->Text = L"Faculty";
+			this->btnFaculty->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->btnFaculty->UseVisualStyleBackColor = true;
+			this->btnFaculty->Click += gcnew System::EventHandler(this, &adminDashboard::button2_Click);
 			// 
-			// btnDashboard
+			// btnStudent
 			// 
-			this->btnDashboard->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnDashboard->Dock = System::Windows::Forms::DockStyle::Top;
-			this->btnDashboard->FlatAppearance->BorderSize = 0;
-			this->btnDashboard->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnDashboard->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnStudent->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnStudent->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btnStudent->FlatAppearance->BorderSize = 0;
+			this->btnStudent->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnStudent->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnDashboard->ForeColor = System::Drawing::Color::White;
-			this->btnDashboard->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnDashboard.Image")));
-			this->btnDashboard->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->btnDashboard->Location = System::Drawing::Point(15, 99);
-			this->btnDashboard->Name = L"btnDashboard";
-			this->btnDashboard->Size = System::Drawing::Size(201, 49);
-			this->btnDashboard->TabIndex = 3;
-			this->btnDashboard->Text = L"Dashboard";
-			this->btnDashboard->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-			this->btnDashboard->UseVisualStyleBackColor = true;
-			this->btnDashboard->Click += gcnew System::EventHandler(this, &adminDashboard::button1_Click);
+			this->btnStudent->ForeColor = System::Drawing::Color::White;
+			this->btnStudent->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnStudent.Image")));
+			this->btnStudent->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->btnStudent->Location = System::Drawing::Point(15, 99);
+			this->btnStudent->Name = L"btnStudent";
+			this->btnStudent->Size = System::Drawing::Size(201, 49);
+			this->btnStudent->TabIndex = 3;
+			this->btnStudent->Text = L"Student";
+			this->btnStudent->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->btnStudent->UseVisualStyleBackColor = true;
+			this->btnStudent->Click += gcnew System::EventHandler(this, &adminDashboard::button1_Click);
 			// 
 			// panel4
 			// 
@@ -309,23 +330,6 @@ namespace AshesiUARMS {
 			this->Logo->TabIndex = 0;
 			this->Logo->TabStop = false;
 			this->Logo->Click += gcnew System::EventHandler(this, &adminDashboard::pictureBox1_Click);
-			// 
-			// btnAddCourse
-			// 
-			this->btnAddCourse->Dock = System::Windows::Forms::DockStyle::Top;
-			this->btnAddCourse->FlatAppearance->BorderSize = 0;
-			this->btnAddCourse->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnAddCourse->Font = (gcnew System::Drawing::Font(L"Century Gothic", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnAddCourse->ForeColor = System::Drawing::Color::White;
-			this->btnAddCourse->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->btnAddCourse->Location = System::Drawing::Point(15, 295);
-			this->btnAddCourse->Name = L"btnAddCourse";
-			this->btnAddCourse->Size = System::Drawing::Size(201, 49);
-			this->btnAddCourse->TabIndex = 9;
-			this->btnAddCourse->Text = L"Add Course";
-			this->btnAddCourse->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-			this->btnAddCourse->UseVisualStyleBackColor = true;
 			// 
 			// adminDashboard
 			// 
