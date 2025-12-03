@@ -81,6 +81,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -111,6 +113,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\Downloads\Compressed\mysql-for-visualstudio-2.0.5-noinstall (1)\v461\mysql.data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -121,7 +126,14 @@
     <ClCompile Include="adminDashboard.cpp" />
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="facultyDashboard.cpp" />
+    <ClCompile Include="frmAddCourse.cpp" />
+    <ClCompile Include="frmAddDepartment.cpp" />
+    <ClCompile Include="frmAddProgram.cpp" />
+    <ClCompile Include="frmRegisterCourse.cpp" />
+    <ClCompile Include="frmRegisterFaculty.cpp" />
+    <ClCompile Include="frmRegisterStudent.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="mainProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adminDashboard.h">
@@ -130,12 +142,32 @@
     <ClInclude Include="facultyDashboard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="frmAddCourse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmAddDepartment.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmAddProgram.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmRegisterCourse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmRegisterFaculty.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmRegisterStudent.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="student.h" />
     <ClInclude Include="studentDashboard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="user_account.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="adminDashboard.resx">
@@ -143,6 +175,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="facultyDashboard.resx">
       <DependentUpon>facultyDashboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddCourse.resx">
+      <DependentUpon>frmAddCourse.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddDepartment.resx">
+      <DependentUpon>frmAddDepartment.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddProgram.resx">
+      <DependentUpon>frmAddProgram.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegisterCourse.resx">
+      <DependentUpon>frmRegisterCourse.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegisterFaculty.resx">
+      <DependentUpon>frmRegisterFaculty.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegisterStudent.resx">
+      <DependentUpon>frmRegisterStudent.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="studentDashboard.resx">
       <DependentUpon>studentDashboard.h</DependentUpon>

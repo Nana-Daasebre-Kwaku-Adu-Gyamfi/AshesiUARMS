@@ -1,4 +1,5 @@
 #pragma once
+#include "user_account.h"
 
 namespace AshesiUARMS {
 
@@ -8,6 +9,7 @@ namespace AshesiUARMS {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for LoginForm
@@ -15,6 +17,17 @@ namespace AshesiUARMS {
 	public ref class LoginForm : public System::Windows::Forms::Form
 	{
 	public:
+		MySqlConnection^ sqlConn = gcnew MySqlConnection();
+		MySqlCommand^ sqlCmd = gcnew MySqlCommand();
+		MySqlDataAdapter^ sqlDA = gcnew MySqlDataAdapter();
+		MySqlDataReader^ sqlDR;
+		DataTable^ sqlDT = gcnew DataTable();
+		// fixed connection string formatting (empty password)
+		String^ ConnectionStr = "datasource=localhost;port=3306;username=root;password=;database=uarms;";
+		UserAccount^ userAccount = gcnew UserAccount("", "", "", "", "");
+		// track the role selected via the menu
+		String^ selectedRole = "Select role";
+
 		LoginForm(void)
 		{
 			InitializeComponent();
@@ -38,16 +51,19 @@ namespace AshesiUARMS {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::TextBox^ txtEmail;
 
-	private: System::Windows::Forms::TextBox^ textBox1;
+
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::Panel^ panel4;
 	private: System::Windows::Forms::Panel^ panel5;
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ txtPassword;
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ btnLogin;
+
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::LinkLabel^ linkLabel1;
 	private: System::Windows::Forms::Label^ label5;
@@ -63,7 +79,7 @@ namespace AshesiUARMS {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -78,16 +94,16 @@ namespace AshesiUARMS {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnLogin = (gcnew System::Windows::Forms::Button());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
 			this->panel5 = (gcnew System::Windows::Forms::Panel());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->txtEmail = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
@@ -111,7 +127,7 @@ namespace AshesiUARMS {
 			this->panel1->Controls->Add(this->label5);
 			this->panel1->Controls->Add(this->label4);
 			this->panel1->Controls->Add(this->linkLabel1);
-			this->panel1->Controls->Add(this->button1);
+			this->panel1->Controls->Add(this->btnLogin);
 			this->panel1->Controls->Add(this->panel4);
 			this->panel1->Controls->Add(this->label3);
 			this->panel1->Controls->Add(this->panel2);
@@ -173,26 +189,27 @@ namespace AshesiUARMS {
 			this->linkLabel1->TabStop = true;
 			this->linkLabel1->Text = L"Forgot my password";
 			// 
-			// button1
+			// btnLogin
 			// 
-			this->button1->BackColor = System::Drawing::Color::Firebrick;
-			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(53, 450);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(327, 37);
-			this->button1->TabIndex = 6;
-			this->button1->Text = L"LOGIN";
-			this->button1->UseVisualStyleBackColor = false;
+			this->btnLogin->BackColor = System::Drawing::Color::Firebrick;
+			this->btnLogin->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->btnLogin->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnLogin->FlatAppearance->BorderSize = 0;
+			this->btnLogin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnLogin->ForeColor = System::Drawing::Color::White;
+			this->btnLogin->Location = System::Drawing::Point(53, 450);
+			this->btnLogin->Name = L"btnLogin";
+			this->btnLogin->Size = System::Drawing::Size(327, 37);
+			this->btnLogin->TabIndex = 6;
+			this->btnLogin->Text = L"LOGIN";
+			this->btnLogin->UseVisualStyleBackColor = false;
+			this->btnLogin->Click += gcnew System::EventHandler(this, &LoginForm::button1_Click);
 			// 
 			// panel4
 			// 
 			this->panel4->Controls->Add(this->panel5);
 			this->panel4->Controls->Add(this->pictureBox3);
-			this->panel4->Controls->Add(this->textBox2);
+			this->panel4->Controls->Add(this->txtPassword);
 			this->panel4->Location = System::Drawing::Point(52, 297);
 			this->panel4->Name = L"panel4";
 			this->panel4->Size = System::Drawing::Size(329, 36);
@@ -219,17 +236,17 @@ namespace AshesiUARMS {
 			this->pictureBox3->TabStop = false;
 			this->pictureBox3->Click += gcnew System::EventHandler(this, &LoginForm::pictureBox3_Click);
 			// 
-			// textBox2
+			// txtPassword
 			// 
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txtPassword->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txtPassword->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(3, 6);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->PasswordChar = '*';
-			this->textBox2->Size = System::Drawing::Size(290, 25);
-			this->textBox2->TabIndex = 4;
-			this->textBox2->TextChanged += gcnew System::EventHandler(this, &LoginForm::textBox2_TextChanged);
+			this->txtPassword->Location = System::Drawing::Point(3, 6);
+			this->txtPassword->Name = L"txtPassword";
+			this->txtPassword->PasswordChar = '*';
+			this->txtPassword->Size = System::Drawing::Size(290, 25);
+			this->txtPassword->TabIndex = 4;
+			this->txtPassword->TextChanged += gcnew System::EventHandler(this, &LoginForm::textBox2_TextChanged);
 			// 
 			// label3
 			// 
@@ -247,7 +264,7 @@ namespace AshesiUARMS {
 			// 
 			this->panel2->Controls->Add(this->panel3);
 			this->panel2->Controls->Add(this->pictureBox2);
-			this->panel2->Controls->Add(this->textBox1);
+			this->panel2->Controls->Add(this->txtEmail);
 			this->panel2->Location = System::Drawing::Point(52, 217);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(329, 36);
@@ -272,15 +289,15 @@ namespace AshesiUARMS {
 			this->pictureBox2->TabIndex = 4;
 			this->pictureBox2->TabStop = false;
 			// 
-			// textBox1
+			// txtEmail
 			// 
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txtEmail->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txtEmail->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(3, 6);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(290, 25);
-			this->textBox1->TabIndex = 4;
+			this->txtEmail->Location = System::Drawing::Point(3, 6);
+			this->txtEmail->Name = L"txtEmail";
+			this->txtEmail->Size = System::Drawing::Size(290, 25);
+			this->txtEmail->TabIndex = 4;
 			// 
 			// label2
 			// 
@@ -330,18 +347,21 @@ namespace AshesiUARMS {
 			this->adminToolStripMenuItem->Name = L"adminToolStripMenuItem";
 			this->adminToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->adminToolStripMenuItem->Text = L"Admin";
+			this->adminToolStripMenuItem->Click += gcnew System::EventHandler(this, &LoginForm::adminToolStripMenuItem_Click);
 			// 
 			// facultyToolStripMenuItem
 			// 
 			this->facultyToolStripMenuItem->Name = L"facultyToolStripMenuItem";
 			this->facultyToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->facultyToolStripMenuItem->Text = L"Faculty";
+			this->facultyToolStripMenuItem->Click += gcnew System::EventHandler(this, &LoginForm::facultyToolStripMenuItem_Click);
 			// 
 			// studentToolStripMenuItem
 			// 
 			this->studentToolStripMenuItem->Name = L"studentToolStripMenuItem";
 			this->studentToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->studentToolStripMenuItem->Text = L"Student";
+			this->studentToolStripMenuItem->Click += gcnew System::EventHandler(this, &LoginForm::studentToolStripMenuItem_Click);
 			// 
 			// LoginForm
 			// 
@@ -372,13 +392,108 @@ namespace AshesiUARMS {
 #pragma endregion
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void pictureBox3_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void pictureBox3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void panel4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	private: System::Void panel4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
-private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+		   // menu item click handlers to track selected role
+	private: System::Void adminToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		selectedRole = "Admin";
+		this->selectRoleToolStripMenuItem->Text = selectedRole;
+	}
+	private: System::Void facultyToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		selectedRole = "Faculty";
+		this->selectRoleToolStripMenuItem->Text = selectedRole;
+	}
+	private: System::Void studentToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		selectedRole = "Student";
+		this->selectRoleToolStripMenuItem->Text = selectedRole;
+	}
+		   // Login button (keeps original handler name as wired in InitializeComponent)
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//Login button
+		String^ email = txtEmail->Text->Trim();
+		String^ password = txtPassword->Text->Trim();
+
+		if (email->Length == 0 || password->Length == 0 || selectedRole == "Select role") {
+			MessageBox::Show("Please fill in all fields and select a role.", "Error",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
+		}
+
+		try {
+			sqlConn->ConnectionString = ConnectionStr;
+			sqlConn->Open();
+
+			sqlCmd->Connection = sqlConn;
+			sqlCmd->Parameters->Clear();
+
+			// Use correct column names from your database
+			sqlCmd->CommandText = "SELECT * FROM user_account WHERE email = @email AND passwordHash = @pwd";
+			sqlCmd->Parameters->AddWithValue("@email", email);
+			sqlCmd->Parameters->AddWithValue("@pwd", password);
+
+			sqlDR = sqlCmd->ExecuteReader();
+
+			if (sqlDR->Read()) {
+				// Get role from database (stored as text: "student", "faculty", "admin")
+				String^ dbRole = sqlDR["role"]->ToString()->ToLower()->Trim();
+				String^ inputRole = selectedRole->ToLower();
+
+				// Verify role matches
+				if (dbRole != inputRole) {
+					MessageBox::Show("Selected role does not match your account role.",
+						"Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					sqlDR->Close();
+					sqlConn->Close();
+					return;
+				}
+
+				// Populate userAccount with correct column names
+				userAccount->userID = sqlDR["userID"]->ToString();
+				userAccount->username = sqlDR["username"]->ToString();
+				userAccount->passwordHash = sqlDR["passwordHash"]->ToString();
+				userAccount->role = sqlDR["role"]->ToString();
+				userAccount->linkedID = sqlDR["linkedID"]->ToString();
+
+				MessageBox::Show("Welcome " + userAccount->username + "!",
+					"Login Successful", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+				sqlDR->Close();
+				sqlConn->Close();
+
+				// TODO: Navigate to appropriate dashboard based on role
+				// if (dbRole == "admin") { /* open admin dashboard */ }
+				// else if (dbRole == "faculty") { /* open faculty dashboard */ }
+				// else if (dbRole == "student") { /* open student dashboard */ }
+
+				this->Hide(); // Hide login form instead of closing
+				return;
+			}
+			else {
+				sqlDR->Close();
+				sqlConn->Close();
+				MessageBox::Show("Email or Password is incorrect, or account does not exist.",
+					"Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				txtPassword->Clear();
+				return;
+			}
+		}
+		catch (Exception^ ex) {
+			if (sqlDR != nullptr && !sqlDR->IsClosed) {
+				try { sqlDR->Close(); }
+				catch (...) {}
+			}
+			if (sqlConn->State == ConnectionState::Open) {
+				try { sqlConn->Close(); }
+				catch (...) {}
+			}
+			MessageBox::Show("Database Error: " + ex->Message,
+				"Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+	};
 }
